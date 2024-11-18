@@ -3,8 +3,14 @@ from discord.ext import commands
 import asyncio
 from dotenv import load_dotenv
 import os
+import asyncio
 
 bot = commands.Bot(".", intents=discord.Intents.all())
+
+@bot.event
+async def on_ready():
+    print(f'Logged in as {bot.user}')
+
 
 
 @bot.command("serverinfo")
@@ -56,6 +62,22 @@ async def self(ctx, user:discord.Member = None):
         await user.remove_roles(muted_role)
     else:
         await ctx.send("Please ping the user you are trying to unmute")    
+    
+@bot.command("purge")
+@commands.has_permissions(manage_messages = True)
+async def self(ctx, amount:int = 0):
+    if amount == 0:
+        await ctx.send("Please specify an amount of messages to purge.")
+    else:
+        async for msg in ctx.channel.history(limit=amount + 1):
+            await msg.delete()
+        else:
+            # Send a message to show that the purging is complete
+            alert = await ctx.send(f"Purged {amount} message(s)!")
+            
+            # Delete the alert after 5 seconds
+            await asyncio.sleep(5)
+            await alert.delete()
     
 
 load_dotenv()
