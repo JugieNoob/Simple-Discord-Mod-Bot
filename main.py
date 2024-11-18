@@ -10,10 +10,20 @@ bot = commands.Bot(".", intents=discord.Intents.all())
 async def on_ready():
     print(f'Logged in as {bot.user}')
 
+async def on_command_error(ctx, error):
+    if isinstance(error, commands.CommandNotFound):
+        await ctx.send("Command not found.")
+    elif isinstance(error, commands.MissingPermissions):
+        await ctx.send("You don't have the required permissions to use this command.")
+    elif isinstance(error, commands.MissingRequiredArgument):
+        await ctx.send("Missing required argument.")
+    else:
+        await ctx.send("An error occurred: " + str(error))
 
 
 @bot.command("serverinfo")
 async def self(ctx):
+    # Creates an embed with server information
     embed = discord.Embed(title="Server Information", description=f"**{ctx.guild.name}**")
     embed.set_thumbnail(url=ctx.guild.icon)
     embed.add_field(name="Owner", value=ctx.guild.owner)
@@ -26,6 +36,7 @@ async def self(ctx):
 @commands.has_permissions(ban_members=True)
 async def self(ctx, user:discord.Member = None, reason = "No Reason Given"):
     if (user != None):
+        # Bans the pinged user
         await user.ban(reason)
         await ctx.send(f"Banned {user} for: {reason}")
     else:
@@ -35,6 +46,7 @@ async def self(ctx, user:discord.Member = None, reason = "No Reason Given"):
 @commands.has_permissions(kick_members=True)
 async def self(ctx, user:discord.Member = None, reason = "No Reason Given"):
     if (user != None):
+        # Kicks the pinged user
         await user.kick(reason)
         await ctx.send(f"Kicked {user} for: {reason}")
     else:
@@ -44,6 +56,7 @@ async def self(ctx, user:discord.Member = None, reason = "No Reason Given"):
 @commands.has_permissions(moderate_members = True) #Timeout permission
 async def self(ctx, user:discord.Member = None, reason = "No Reason Given", time:float = 1):
     if (user != None):
+        # Gives the muted role to the pinged user
         muted_role = discord.utils.get(ctx.guild.roles, name="Muted")
         await user.add_roles(muted_role)
         await ctx.send(f"Muted {user} for: {reason} for {time} minutes")
@@ -55,12 +68,13 @@ async def self(ctx, user:discord.Member = None, reason = "No Reason Given", time
 @bot.command("unmute")
 @commands.has_permissions(moderate_members = True) #Timeout permission
 async def self(ctx, user:discord.Member = None):
-    if (user != None):
-        muted_role = discord.utils.get(ctx.guild.roles, name="Muted")
-        await ctx.send(f"Unmuted {user}!")
-        await user.remove_roles(muted_role)
-    else:
-        await ctx.send("Please ping the user you are trying to unmute")    
+        if (user != None):
+            muted_role = discord.utils.get(ctx.guild.roles, name="Muted")
+            await ctx.send(f"Unmuted {user}!")
+            await user.remove_roles(muted_role)
+        else:
+            await ctx.send("Please ping the user you are trying to unmute")
+        
     
 @bot.command("purge")
 @commands.has_permissions(manage_messages = True)
@@ -77,7 +91,9 @@ async def self(ctx, amount:int = 0):
             # Delete the alert after 5 seconds
             await asyncio.sleep(5)
             await alert.delete()
-    
 
+    
+    
+    
 load_dotenv()
 bot.run(os.getenv("TOKEN"))
