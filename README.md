@@ -1,4 +1,4 @@
-# Simple Moderation Bot 🤖
+# **Simple Moderation Bot** 🤖
 
 ## Table of Contents 📝
 - [What is this? ❓](#what-is-this-question)
@@ -6,21 +6,21 @@
 - [How to Setup ℹ️](#how-to-setup-information_source)
 - [Commands ⌨️](#commands-keyboard)
 
-###  What is this? :question:
+##  What is this? :question:
 
 This is a simple Discord Bot that gives you access to basic moderation commands. I made this project to learn more about discord bots and the discord.py library. I decided to make it open source to show what I was able to learn and to allow other people to iterate on it if they wish to do so.
 
-### Dependencies :page_with_curl:
+## Dependencies :page_with_curl:
 - [discord.py](https://discordpy.readthedocs.io/en/stable/)
 - [dotenv](https://pypi.org/project/python-dotenv/)
 - [asyncio](https://pypi.org/project/asyncio)
 
-### How to Setup :information_source:
+## How to Setup :information_source:
 
 Please click here to learn how to setup and start the bot.
 
 
-### Commands :keyboard:
+## Commands :keyboard:
 
 Command|Description|Required Permissions
 -|-|-
