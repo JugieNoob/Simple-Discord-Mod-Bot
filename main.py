@@ -3,7 +3,6 @@ from discord.ext import commands
 import asyncio
 from dotenv import load_dotenv
 import os
-import asyncio
 
 bot = commands.Bot(".", intents=discord.Intents.all())
 
