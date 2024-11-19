@@ -2,9 +2,9 @@
 
 ## Table of Contents
 
-1. [Python Installation :snake:](#python-installation-:snake:)
-2. [Library Installation :memo:](#library-installation-:memo:)
-3. [Running the Bot :robot:](#running-the-bot-:robot:)
+1. [Python Installation :snake:](#python-installation-snake)
+2. [Library Installation :memo:](#library-installation-memo)
+3. [Running the Bot :robot:](#running-the-bot-robot)
 
 
 ### Python Installation :snake:
