@@ -3,13 +3,18 @@ from discord.ext import commands
 import asyncio
 from dotenv import load_dotenv
 import os
+from datetime import datetime
+import time
 
-bot = commands.Bot(".", intents=discord.Intents.all())
+bot = commands.Bot(".", intents=discord.Intents.all(), help_command=None)
+starttime = time.time()
 
 @bot.event
 async def on_ready():
     print(f'Logged in as {bot.user}')
-
+    global botuser
+    botuser = bot.user
+# Bot sends a message if an error occurs
 async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
         await ctx.send("Command not found.")
@@ -19,6 +24,50 @@ async def on_command_error(ctx, error):
         await ctx.send("Missing required argument.")
     else:
         await ctx.send("An error occurred: " + str(error))
+
+# Help Menu
+helpembed = discord.Embed(title="Help Menu ❓", description=f"Use {bot.command_prefix}help (command) to get information about a command.")
+helpembed.add_field(name="serverinfo", value="Displays basic information about the server")
+helpembed.add_field(name="ban", value="Bans the pinged user.")
+helpembed.add_field(name="kick", value="Kicks the pinged user.")
+helpembed.add_field(name="mute", value="Mutes the pinged user.")
+helpembed.add_field(name="unmute", value="Unmutes the pinged user.")
+helpembed.add_field(name="purge", value="Purges the amount of messages entered.")
+helpembed.add_field(name="info", value="Displays info about the bot.")
+
+
+# Info Menu
+infoembed = discord.Embed(title="Info Menu :information_source:")
+infoembed.add_field(name="Bot Start Time", value=datetime.fromtimestamp(starttime))
+infoembed.add_field(name="Bot Creator", value="[Jugie](https://github.com/JugieNoob)", inline=False)
+infoembed.add_field(name="Bot Source Code", value="[Github](https://github.com/JugieNoob/Simple-Mod-Bot)", inline=False)
+
+
+@bot.command("help")
+async def self(ctx, arg:str = ""):
+    if arg.lower() == "serverinfo":
+        await ctx.send("```Displays basic information about the server such as the server creation date and the current member count```")
+    elif arg.lower() == "ban":
+        await ctx.send(f"```Bans the pinged user from the server\n{bot.command_prefix}ban (user)\nRequired Permissions: Ban Members```")
+    elif arg.lower() == "kick":
+        await ctx.send(f"```Kicks the pinged user from the server\n{bot.command_prefix}kick (user)\nRequired Permissions: Kick Members```")
+    elif arg.lower() == "mute":
+        await ctx.send(f"```Gives the pinged user the muted role\n{bot.command_prefix}mute (user)\nRequired Permissions: Moderate Members```")
+    elif arg.lower() == "unmute":
+        await ctx.send(f"```Removes the muted role from the pinged user\n{bot.command_prefix}unmute (user)\nRequired Permissions: Moderate Members```")
+    elif arg.lower() == "purge":
+        await ctx.send(f"```Removes the amount of messages entered in the current channel\n{bot.command_prefix}purge (amount)\nRequired Permissions: Manage Messages```")
+    else:
+        helpembed.set_thumbnail(url=botuser.avatar)
+        helpembed.set_footer(text=f"{botuser}: Help")
+        await ctx.send(embed=helpembed)
+    
+
+@bot.command("info")
+async def self(ctx):
+    infoembed.set_thumbnail(url=botuser.avatar)
+    helpembed.set_footer(text=f"{botuser}: Info")
+    await ctx.send(embed=infoembed)
 
 
 @bot.command("serverinfo")
