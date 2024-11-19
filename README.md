@@ -1,12 +1,12 @@
 # **Simple Moderation Bot** 🤖
 
 ## Table of Contents 📝
-- [What is this? ❓](#what-is-this-question)
+- [What is this ❓](#what-is-this-question)
 - [Dependencies 📃](#dependencies-page_with_curl)
 - [How to Setup ℹ️](#how-to-setup-information_source)
 - [Commands ⌨️](#commands-keyboard)
 
-##  What is this? :question:
+##  What is this :question:
 
 This is a simple Discord Bot that gives you access to basic moderation commands. I made this project to learn more about discord bots and the discord.py library. I decided to make it open source to show what I was able to learn and to allow other people to iterate on it if they wish to do so.
 
@@ -24,6 +24,8 @@ Please click here to learn how to setup and start the bot.
 
 Command|Description|Required Permissions
 -|-|-
+.help | Shows all the bot's commands. | None
+.info | Displays information about the bot. | None
 .serverinfo| Displays some information about the current server like the creation date and member count. | None
 .ban | Allows users with sufficient permissions to ban other users. | Ban Members
 .kick | Allows users with sufficient permissions to kick other users. | Kick Members
