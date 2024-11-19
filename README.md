@@ -10,6 +10,8 @@
 
 This is a simple Discord Bot that gives you access to basic moderation commands. I made this project to learn more about discord bots and the discord.py library. I decided to make it open source to show what I was able to learn and to allow other people to iterate on it if they wish to do so.
 
+If you encounter any problems with the bot please make an issue [here](https://github.com/JugieNoob/Simple-Discord-Mod-Bot/issues) and i will try my best to solve them.
+
 ## Dependencies :page_with_curl:
 - [discord.py](https://discordpy.readthedocs.io/en/stable/)
 - [dotenv](https://pypi.org/project/python-dotenv/)
@@ -19,7 +21,7 @@ This is a simple Discord Bot that gives you access to basic moderation commands.
 
 ## How to Setup :information_source:
 
-Please click here to learn how to setup and start the bot.
+Please click [here](https://github.com/JugieNoob/Simple-Discord-Mod-Bot/blob/main/Setup.md) to learn how to setup and start the bot.
 
 
 ## Commands :keyboard:
