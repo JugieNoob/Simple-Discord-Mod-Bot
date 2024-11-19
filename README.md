@@ -15,6 +15,8 @@ This is a simple Discord Bot that gives you access to basic moderation commands.
 - [dotenv](https://pypi.org/project/python-dotenv/)
 - [asyncio](https://pypi.org/project/asyncio)
 
+❗To install the dependencies type ``pip install -r requirements.txt`` into a terminal window. ❗
+
 ## How to Setup :information_source:
 
 Please click here to learn how to setup and start the bot.
