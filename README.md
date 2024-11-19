@@ -24,6 +24,8 @@ Please click here to learn how to setup and start the bot.
 
 Command|Description|Required Permissions
 -|-|-
+.help | Shows all the bot's commands. | None
+.info | Displays information about the bot. | None
 .serverinfo| Displays some information about the current server like the creation date and member count. | None
 .ban | Allows users with sufficient permissions to ban other users. | Ban Members
 .kick | Allows users with sufficient permissions to kick other users. | Kick Members
