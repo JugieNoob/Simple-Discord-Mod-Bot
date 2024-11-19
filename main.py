@@ -27,6 +27,7 @@ async def on_command_error(ctx, error):
 
 # Help Menu
 helpembed = discord.Embed(title="Help Menu ❓", description=f"Use {bot.command_prefix}help (command) to get information about a command.")
+helpembed.add_field(name="help", value="Shows all bot commands (you're using it right now)")
 helpembed.add_field(name="serverinfo", value="Displays basic information about the server")
 helpembed.add_field(name="ban", value="Bans the pinged user.")
 helpembed.add_field(name="kick", value="Kicks the pinged user.")
@@ -46,17 +47,21 @@ infoembed.add_field(name="Bot Source Code", value="[Github](https://github.com/J
 @bot.command("help")
 async def self(ctx, arg:str = ""):
     if arg.lower() == "serverinfo":
-        await ctx.send("```Displays basic information about the server such as the server creation date and the current member count```")
+        await ctx.send("```Displays basic information about the server such as the server creation date and the current member count.```")
     elif arg.lower() == "ban":
-        await ctx.send(f"```Bans the pinged user from the server\n{bot.command_prefix}ban (user)\nRequired Permissions: Ban Members```")
+        await ctx.send(f"```Bans the pinged user from the server.\n{bot.command_prefix}ban (user)\nRequired Permissions: Ban Members```")
     elif arg.lower() == "kick":
-        await ctx.send(f"```Kicks the pinged user from the server\n{bot.command_prefix}kick (user)\nRequired Permissions: Kick Members```")
+        await ctx.send(f"```Kicks the pinged user from the server.\n{bot.command_prefix}kick (user)\nRequired Permissions: Kick Members```")
     elif arg.lower() == "mute":
-        await ctx.send(f"```Gives the pinged user the muted role\n{bot.command_prefix}mute (user)\nRequired Permissions: Moderate Members```")
+        await ctx.send(f"```Gives the pinged user the muted role.\n{bot.command_prefix}mute (user)\nRequired Permissions: Moderate Members```")
     elif arg.lower() == "unmute":
-        await ctx.send(f"```Removes the muted role from the pinged user\n{bot.command_prefix}unmute (user)\nRequired Permissions: Moderate Members```")
+        await ctx.send(f"```Removes the muted role from the pinged user.\n{bot.command_prefix}unmute (user)\nRequired Permissions: Moderate Members```")
     elif arg.lower() == "purge":
-        await ctx.send(f"```Removes the amount of messages entered in the current channel\n{bot.command_prefix}purge (amount)\nRequired Permissions: Manage Messages```")
+        await ctx.send(f"```Removes the amount of messages entered in the current channel.\n{bot.command_prefix}purge (amount)\nRequired Permissions: Manage Messages```")
+    elif arg.lower() == "info":
+        await ctx.send(f"```Displays some information about the bot.```")
+    elif arg.lower() == "help":
+        await ctx.send(f"```Shows all the available commands.```")
     else:
         helpembed.set_thumbnail(url=botuser.avatar)
         helpembed.set_footer(text=f"{botuser}: Help")
